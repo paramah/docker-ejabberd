@@ -19,7 +19,7 @@
     - [Modules](#modules)
     - [Logging](#logging)
     - [Mount Configurations](#mount-configurations)
-		- [SQL Mode](#sql-mode)
+    - [SQL Mode](#sql-mode)
 - [Maintenance](#maintenance)
     - [Register Users](#register-users)
     - [Creating Backups](#creating-backups)
