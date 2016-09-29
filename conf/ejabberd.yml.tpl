@@ -384,12 +384,12 @@ modules:
     {% endif %}
 
     access: register
-	{%- if env['EJABBERD_SQL_MODE'] == "true" %}
-	mod_roster:
-	  db_type: sql
-	{%- else %}
-	mod_roster: {}
-	{% endif %}
+  {%- if env['EJABBERD_SQL_MODE'] == "true" %}
+  mod_roster:
+    db_type: sql
+  {%- else %}
+  mod_roster: {}
+  {% endif %}
   mod_shared_roster: {}
   mod_stats: {}
   mod_time: {}
