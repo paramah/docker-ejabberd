@@ -19,6 +19,7 @@
     - [Modules](#modules)
     - [Logging](#logging)
     - [Mount Configurations](#mount-configurations)
+		- [SQL Mode](#sql-mode)
 - [Maintenance](#maintenance)
     - [Register Users](#register-users)
     - [Creating Backups](#creating-backups)
@@ -309,6 +310,23 @@ Your ```/<host_path>/conf``` folder should look like so:
 Example configuration files can be downloaded from the ejabberd [github](https://github.com/processone/ejabberd) page.
 
 When these files exist in ```/opt/ejabberd/conf```, the run script will ignore the configuration templates.
+
+#SQL Mode
+Add new env for SQL mode in ejabberd
+
+- **EJABBERD_SQL_MODE**: Enable sql mode
+
+```jinija
+{%- if env['EJABBERD_SQL_MODE'] == "true" %}
+sql_type: mysql
+sql_server: "{{ env['AUTH_MYSQL_HOST']}}" 
+sql_database: "{{ env['AUTH_MYSQL_DATABASE']}}"
+sql_username: "{{ env['AUTH_MYSQL_USER']}}"
+sql_password: "{{ env['AUTH_MYSQL_PASSWORD']}}"
+sql_port: {{ env['AUTH_MYSQL_PORT'] or 3306 }}
+{%- endif %}
+```
+and add mod_roaster from mnesia to sql
 
 # Maintenance
 
