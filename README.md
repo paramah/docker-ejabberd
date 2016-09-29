@@ -45,27 +45,10 @@ Docker Tag Names are based on ejabberd versions in git [branches][] and [tags][]
 
 # Quick Start
 
-You can start of with the following container:
+You can start of with the following container with the [docker-compose](examples/docker-compose/docker-compose.yml) example
 
 ```bash
-docker run -d \
-    --name "ejabberd" \
-    -p 5222:5222 \
-    -p 5269:5269 \
-    -p 5280:5280 \
-    -h 'xmpp.example.de' \
-    -e "XMPP_DOMAIN=example.de" \
-    -e "ERLANG_NODE=ejabberd" \
-    -e "EJABBERD_ADMINS=admin@example.de admin2@example.de" \
-    -e "EJABBERD_USERS=admin@example.de:password1234 admin2@example.de" \
-    -e "TZ=Europe/Berlin" \
-    rroemhild/ejabberd
-```
-
-or with the [docker-compose](examples/docker-compose/docker-compose.yml) example
-
-```bash
-wget https://raw.githubusercontent.com/rroemhild/docker-ejabberd/master/examples/docker-compose/docker-compose.yml
+https://raw.githubusercontent.com/paramah/docker-ejabberd/master/examples/docker-compose/docker-compose.yml
 docker-compose up
 ```
 
