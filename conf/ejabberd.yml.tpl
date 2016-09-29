@@ -16,6 +16,16 @@ loglevel: {{ env['EJABBERD_LOGLEVEL'] or 4 }}
 log_rotate_size: 10485760
 log_rotate_count: 0
 log_rate_limit: 100
+{%- if env['EJABBERD_SQL_MODE'] == "true" %}
+sql_type: mysql
+sql_server: "{{ env['AUTH_MYSQL_HOST']}}" 
+sql_database: "{{ env['AUTH_MYSQL_DATABASE']}}"
+sql_username: "{{ env['AUTH_MYSQL_USER']}}"
+sql_password: "{{ env['AUTH_MYSQL_PASSWORD']}}"
+sql_port: {{ env['AUTH_MYSQL_PORT'] or 3306 }}
+{%- endif %}
+# If you want to specify the port:
+
 
 ## watchdog_admins:
 ##   - "bob@example.com"
@@ -273,7 +283,7 @@ access:
     all: deny
     admin: allow
     {% else %}
-    all: allow
+    all: deny
     {% endif %}
   ## Only allow to register from localhost
   trusted_network:
@@ -374,7 +384,12 @@ modules:
     {% endif %}
 
     access: register
-  mod_roster: {}
+	{%- if env['EJABBERD_SQL_MODE'] == "true" %}
+	mod_roster:
+	  db_type: sql
+	{%- else %}
+	mod_roster: {}
+	{% endif %}
   mod_shared_roster: {}
   mod_stats: {}
   mod_time: {}
